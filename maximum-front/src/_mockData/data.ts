@@ -7,15 +7,6 @@ export const brands = [
 
 export const models = ["A4", "A6", "A8"];
 
-export const columns = [
-  { title: "ID", dataIndex: "id", key: "id" },
-  { title: "Марка/модель", dataIndex: "markModel", key: "markModel" },
-  { title: "Модификация", dataIndex: "modification", key: "modification" },
-  { title: "Комплектация", dataIndex: "equipment", key: "equipment" },
-  { title: "Стоимость", dataIndex: "price", key: "price" },
-  { title: "Дата создания", dataIndex: "createdAt", key: "createdAt" },
-];
-
 export const data = [
   {
     id: 1,

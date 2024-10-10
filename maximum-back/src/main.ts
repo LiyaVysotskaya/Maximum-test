@@ -54,14 +54,54 @@ app.use("/api", apiRouter);
 //   }
 // });
 
+// apiRouter.get("/stocks", async (req, res) => {
+//   try {
+//     const { mark, models } = req.query;
+
+//     const dataString: any[] = [];
+
+//     if (typeof mark === "string") {
+//       dataString.push({
+//         $match: {
+//           mark,
+//         },
+//       });
+//     }
+
+//     if (typeof models === "string") {
+//       const modelArray = models.split(",");
+//       dataString.push({
+//         $match: {
+//           model: { $in: modelArray },
+//         },
+//       });
+//     }
+
+//     dataString.push({
+//       $group: {
+//         _id: "$mark",
+//         count: { $sum: 1 },
+//       },
+//     });
+
+//     const stocks = await client
+//       .db("hrTest")
+//       .collection("stock")
+//       .aggregate(dataString)
+//       .toArray();
+//     res.json(stocks);
+//   } catch (err: any) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
+
 apiRouter.get("/stocks", async (req, res) => {
   try {
-    const { mark, models } = req.query;
-
-    const dataString: any[] = [];
+    const { mark, models, page = 1, pageSize = 10 } = req.query;
+    const filters: any[] = [];
 
     if (typeof mark === "string") {
-      dataString.push({
+      filters.push({
         $match: {
           mark,
         },
@@ -70,26 +110,56 @@ apiRouter.get("/stocks", async (req, res) => {
 
     if (typeof models === "string") {
       const modelArray = models.split(",");
-      dataString.push({
+      filters.push({
         $match: {
           model: { $in: modelArray },
         },
       });
     }
 
-    dataString.push({
-      $group: {
-        _id: "$mark",
-        count: { $sum: 1 },
-      },
-    });
+    const total = await client
+      .db("hrTest")
+      .collection("stock")
+      .countDocuments(filters.length ? { $and: filters } : {});
 
     const stocks = await client
       .db("hrTest")
       .collection("stock")
-      .aggregate(dataString)
+      .aggregate([
+        ...filters,
+        { $skip: (Number(page) - 1) * Number(pageSize) },
+        { $limit: Number(pageSize) },
+      ])
       .toArray();
-    res.json(stocks);
+
+    res.json({ stocks, total });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+apiRouter.get("/stocks/brands", async (req, res) => {
+  try {
+    const brands = await client
+      .db("hrTest")
+      .collection("stock")
+      .aggregate([
+        {
+          $group: {
+            _id: "$mark",
+            count: { $sum: 1 },
+          },
+        },
+        {
+          $project: {
+            name: "$_id",
+            count: 1,
+            _id: 0,
+          },
+        },
+      ])
+      .toArray();
+    res.json(brands);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
