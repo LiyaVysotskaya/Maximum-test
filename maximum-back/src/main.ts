@@ -1,8 +1,7 @@
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
-import mongoose from "mongoose";
-import Stock from "./models/stock";
+import { MongoClient } from "mongodb";
 
 dotenv.config();
 
@@ -25,14 +24,14 @@ app.use(
   })
 );
 
+const client = new MongoClient(process.env.MONGODB_URL as string);
+
 async function connectDB() {
   try {
-    mongoose.connect(process.env.MONGODB_URL as string, {
-      dbName: "hrTest",
-    });
+    await client.connect();
     console.log("Подключение к MongoDB прошло успешно");
   } catch (err) {
-    console.error("Не удалось подключиться к MongoDB", err);
+    console.error("Ошибка подключения", err);
   }
 }
 
@@ -41,26 +40,13 @@ connectDB();
 app.use(express.json());
 app.use("/api", apiRouter);
 
-// apiRouter.get("/stocks", async (req, res) => {
-//   try {
-//     const stocks = await Stock.aggregate([
-//       {
-//         $group: {
-//           _id: "$mark",
-//           count: { $sum: 1 },
-//         },
-//       },
-//     ]);
-
-//     res.json(stocks);
-//   } catch (err: any) {
-//     res.status(500).json({ error: err.message });
-//   }
-// });
-
 apiRouter.get("/stocks", async (req, res) => {
   try {
-    const stocks = await Stock.find();
+    const stocks = await client
+      .db("hrTest")
+      .collection("stock")
+      .find()
+      .toArray();
     res.json(stocks);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
