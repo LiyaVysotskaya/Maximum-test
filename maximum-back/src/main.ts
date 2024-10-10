@@ -2,6 +2,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import { MongoClient } from "mongodb";
+import { ParsedQs } from "qs";
 
 dotenv.config();
 
@@ -40,12 +41,53 @@ connectDB();
 app.use(express.json());
 app.use("/api", apiRouter);
 
+// apiRouter.get("/stocks", async (req, res) => {
+//   try {
+//     const stocks = await client
+//       .db("hrTest")
+//       .collection("stock")
+//       .find()
+//       .toArray();
+//     res.json(stocks);
+//   } catch (err: any) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
+
 apiRouter.get("/stocks", async (req, res) => {
   try {
+    const { mark, models } = req.query;
+
+    const dataString: any[] = [];
+
+    if (typeof mark === "string") {
+      dataString.push({
+        $match: {
+          mark,
+        },
+      });
+    }
+
+    if (typeof models === "string") {
+      const modelArray = models.split(",");
+      dataString.push({
+        $match: {
+          model: { $in: modelArray },
+        },
+      });
+    }
+
+    dataString.push({
+      $group: {
+        _id: "$mark",
+        count: { $sum: 1 },
+      },
+    });
+
     const stocks = await client
       .db("hrTest")
       .collection("stock")
-      .find()
+      .aggregate(dataString)
       .toArray();
     res.json(stocks);
   } catch (err: any) {
