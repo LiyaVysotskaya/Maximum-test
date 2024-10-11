@@ -97,7 +97,7 @@ app.use("/api", apiRouter);
 
 apiRouter.get("/stocks", async (req, res) => {
   try {
-    const { mark, models, page = 1, pageSize = 10 } = req.query;
+    const { mark, models, page = 1 } = req.query;
     const filters: any[] = [];
 
     if (typeof mark === "string") {
@@ -125,11 +125,7 @@ apiRouter.get("/stocks", async (req, res) => {
     const stocks = await client
       .db("hrTest")
       .collection("stock")
-      .aggregate([
-        ...filters,
-        { $skip: (Number(page) - 1) * Number(pageSize) },
-        { $limit: Number(pageSize) },
-      ])
+      .aggregate([...filters])
       .toArray();
 
     res.json({ stocks, total });
@@ -138,9 +134,9 @@ apiRouter.get("/stocks", async (req, res) => {
   }
 });
 
-apiRouter.get("/stocks/brands", async (req, res) => {
+apiRouter.get("/stocks/marks", async (req, res) => {
   try {
-    const brands = await client
+    const marks = await client
       .db("hrTest")
       .collection("stock")
       .aggregate([
@@ -159,7 +155,7 @@ apiRouter.get("/stocks/brands", async (req, res) => {
         },
       ])
       .toArray();
-    res.json(brands);
+    res.json(marks);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }

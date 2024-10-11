@@ -3,56 +3,73 @@ import Option from "antd/es/select";
 import Link from "antd/es/typography/Link";
 import { useEffect, useState } from "react";
 import "./App.css";
-import { getAllStocks, getBrands, getModels } from "./api/api";
+// import stockData from "./_mockData/test.json";
+import { getAllStocks } from "./api/api";
 import { columns } from "./constants.ts/tableColumns";
+import { StockType } from "./types/types";
 
 const StockTable = () => {
-  const [brands, setBrands] = useState([]);
-  const [models, setModels] = useState<string[]>([]);
+  const [marks, setMarks] = useState<string[]>([]);
+  const [selectedMark, setSelectedMark] = useState<string | null>(null);
   const [selectedModels, setSelectedModels] = useState<string[]>([]);
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
+  const [data, setData] = useState<StockType[]>([]);
+  const [total, setTotal] = useState(0);
 
   const getData = async () => {
     try {
       const stockData = await getAllStocks();
-      // selectedBrand ?? "",
-      // selectedModels,
-      // currentPage,
-      // pageSize
+
       setData(stockData.stocks);
       setTotal(stockData.total);
+      setMarks(
+        stockData.stocks
+          .map((stock: StockType) => stock.mark)
+          .filter(
+            (value: string, index: number, self: string[]) =>
+              self.indexOf(value) === index
+          )
+      );
     } catch (error) {
       console.error("Ошибка при получении стоков:", error);
     }
   };
 
-  const getBrandsData = async () => {
-    try {
-      const brandsData = await getBrands();
-      setBrands(brandsData);
-    } catch (error) {
-      console.error("Ошибка при получении брендов:", error);
-    }
-  };
+  // const getData = async () => {
+  //   try {
+  //     // setData(stockData.stocks);
+  //     setData(
+  //       stockData.stocks.map((stock) => ({
+  //         ...stock,
+  //         createdAt: new Date(stock.createdAt),
+  //       }))
+  //     );
+  //     setTotal(stockData.total);
+  //     setMarks(
+  //       data
+  //         .map((stock: StockType) => stock.mark)
+  //         .filter(
+  //           (value: string, index: number, self: string[]) =>
+  //             self.indexOf(value) === index
+  //         )
+  //     );
+  //   } catch (error) {
+  //     console.error("Ошибка при получении стоков:", error);
+  //   }
+  // };
 
-  const getModelsData = async (brand: string) => {
-    try {
-      const modelsData = await getModels(brand);
-      setModels(modelsData);
-    } catch (error) {
-      console.error("Ошибка при получении моделей:", error);
-    }
-  };
+  const paginatedData = data.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
 
-  const handleBrandClick = (brand: string) => {
-    setSelectedBrand(brand);
-    getModels(brand);
-    setSelectedModels([]);
-  };
+  const filteredModels = selectedMark
+    ? data
+        .filter((car) => car.mark === selectedMark)
+        .map((car) => car.model)
+        .filter((value, index, self) => self.indexOf(value) === index)
+    : [];
 
   const handleModelChange = (value: string[]) => {
     setSelectedModels(value);
@@ -63,54 +80,58 @@ const StockTable = () => {
     setPageSize(pageSize);
   };
 
-  useEffect(() => {
-    getData();
-  }, [selectedBrand, selectedModels, currentPage, pageSize]);
+  const handleMarkSelect = (mark: string) => {
+    setSelectedMark(mark);
+    setSelectedModels([]);
+    setCurrentPage(1);
+  };
 
   useEffect(() => {
-    getBrands();
-  }, []);
+    getData();
+  }, [selectedMark, selectedModels, currentPage, pageSize]);
 
   return (
     <div className="mainSection">
       <h1 className="title">Таблица автомобилей</h1>
-
       <div className="linksContainer">
-        {brands.map((brand: { name: string; count: number }) => (
-          <div className="linkWrapper" key={brand.name}>
-            <Link className="link" onClick={() => handleBrandClick(brand.name)}>
-              {brand.name}
+        {marks.map((mark) => (
+          <div className="linkWrapper" key={mark}>
+            <Link
+              className={`link ${selectedMark === mark ? "selected" : ""}`}
+              href="#"
+              onClick={() => handleMarkSelect(mark)}
+            >
+              {mark}
             </Link>
-            <span className="count">({brand.count})</span>
+            <span className="count">1</span>
           </div>
         ))}
       </div>
 
-      {selectedBrand && (
-        <div className="searchContainer">
-          <p className="modelText">Модель:</p>
-          <Select
-            mode="multiple"
-            allowClear
-            style={{ width: "100%" }}
-            placeholder="Выберите модель"
-            onChange={handleModelChange}
-            value={selectedModels}
-          >
-            {models.map((model) => (
-              <Option key={model} value={model}>
-                {model}
-              </Option>
-            ))}
-          </Select>
-        </div>
-      )}
+      <div className="searchContainer">
+        <p className="modelText">Модель:</p>
+        <Select
+          mode="multiple"
+          allowClear
+          style={{ width: "100%" }}
+          placeholder="Выберите модель"
+          value={selectedModels}
+          onChange={handleModelChange}
+        >
+          {filteredModels.map((model) => (
+            <Option key={model} value={model}>
+              {model}
+            </Option>
+          ))}
+        </Select>
+      </div>
 
       <div className="tableContainer">
         <Table
           columns={columns}
-          dataSource={data}
+          dataSource={paginatedData}
           pagination={false}
+          style={{ width: "100%" }}
           rowKey="_id"
         />
 

@@ -23,6 +23,14 @@
   gap: 0.3rem;
 }
 
+.link {
+  font-weight: normal;
+  text-decoration: none;
+}
+.link.selected {
+  font-weight: bold;
+}
+
 .count {
   font-size: 14px;
 }

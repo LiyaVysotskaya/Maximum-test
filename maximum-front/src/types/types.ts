@@ -13,10 +13,3 @@ export type StockType = {
   price: number;
   createdAt: Date;
 };
-
-export type FilterType = {
-  selectedBrand: string;
-  selectedModels: string[];
-  currentPage: number;
-  pageSize: number;
-};
