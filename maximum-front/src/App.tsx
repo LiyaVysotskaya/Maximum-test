@@ -16,17 +16,12 @@ const StockTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [data, setData] = useState<StockType[]>([]);
-  const [total, setTotal] = useState(0);
+  // const [total, setTotal] = useState(0);
 
   useEffect(() => {
     getData();
     getMarksData();
   }, []);
-
-  const paginatedData = data.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize
-  );
 
   // const getData = async () => {
   //   try {
@@ -58,7 +53,7 @@ const StockTable = () => {
           createdAt: new Date(stock.createdAt),
         }))
       );
-      setTotal(stockData.total);
+      // setTotal(stockData.total);
     } catch (error) {
       console.error("Ошибка при получении стоков:", error);
     }
@@ -72,15 +67,17 @@ const StockTable = () => {
     }
   };
 
-  const filteredModels = selectedMark
-    ? data
-        .filter((car) => car.mark === selectedMark)
-        .map((car) => car.model)
-        .filter((value, index, self) => self.indexOf(value) === index)
-    : [];
+  const filteredData = data.filter((car) => {
+    const matchMark = selectedMark ? car.mark === selectedMark : true;
+    const matchModel = selectedModels.length
+      ? selectedModels.includes(car.model)
+      : true;
+    return matchMark && matchModel;
+  });
 
   const handleModelChange = (value: string[]) => {
     setSelectedModels(value);
+    setCurrentPage(1);
   };
 
   const handlePageChange = (page: number, pageSize: number) => {
@@ -93,6 +90,18 @@ const StockTable = () => {
     setSelectedModels([]);
     setCurrentPage(1);
   };
+
+  const filteredModels = selectedMark
+    ? data
+        .filter((car) => car.mark === selectedMark)
+        .map((car) => car.model)
+        .filter((value, index, self) => self.indexOf(value) === index)
+    : [];
+
+  const paginatedData = filteredData.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
 
   return (
     <div className="mainSection">
@@ -121,6 +130,7 @@ const StockTable = () => {
           placeholder="Выберите модель"
           value={selectedModels}
           onChange={handleModelChange}
+          disabled={!selectedMark}
         >
           {filteredModels.map((model) => (
             <Option key={model} value={model}>
@@ -142,7 +152,7 @@ const StockTable = () => {
         <Pagination
           current={currentPage}
           pageSize={pageSize}
-          total={total}
+          total={filteredData.length}
           onChange={handlePageChange}
           showSizeChanger
           pageSizeOptions={[10, 20, 50]}
