@@ -149,6 +149,141 @@
       "equipmentName": "Respect",
       "price": 1801300,
       "createdAt": "2023-07-06T15:10:53.388Z"
+    },
+    {
+      "_id": "64a6e29a6bda5033508ce75a",
+      "mark": "Volkswagen",
+      "model": "Polo",
+      "engine": {
+        "power": 110,
+        "volume": 1.6,
+        "transmission": "6AT",
+        "fuel": "Бензин"
+      },
+      "drive": "FF",
+      "equipmentName": "Respect",
+      "price": 1833200,
+      "createdAt": "2023-07-06T15:10:50.712Z"
+    },
+    {
+      "_id": "64a6e29a6bda5033508ce75d",
+      "mark": "Volkswagen",
+      "model": "Polo",
+      "engine": {
+        "power": 110,
+        "volume": 1.6,
+        "transmission": "6AT",
+        "fuel": "Бензин"
+      },
+      "drive": "FF",
+      "equipmentName": "Respect",
+      "price": 1808200,
+      "createdAt": "2023-07-06T15:11:03.051Z"
+    },
+    {
+      "_id": "64a6e29a6bda5033508ce75e",
+      "mark": "Volkswagen",
+      "model": "Polo",
+      "engine": {
+        "power": 110,
+        "volume": 1.6,
+        "transmission": "6AT",
+        "fuel": "Бензин"
+      },
+      "drive": "FF",
+      "equipmentName": "Respect",
+      "price": 1316000,
+      "createdAt": "2023-07-06T15:10:57.637Z"
+    },
+    {
+      "_id": "64a6e29a6bda5033508ce771",
+      "mark": "Volkswagen",
+      "model": "Polo",
+      "engine": {
+        "power": 110,
+        "volume": 1.6,
+        "transmission": "6AT",
+        "fuel": "Бензин"
+      },
+      "drive": "FF",
+      "equipmentName": "Respect",
+      "price": 1855800,
+      "createdAt": "2023-07-06T15:11:00.755Z"
+    },
+    {
+      "_id": "64a6e29a6bda5033508ce77a",
+      "mark": "Volkswagen",
+      "model": "Polo",
+      "engine": {
+        "power": 110,
+        "volume": 1.6,
+        "transmission": "6AT",
+        "fuel": "Бензин"
+      },
+      "drive": "FF",
+      "equipmentName": "Respect",
+      "price": 1855800,
+      "createdAt": "2023-07-06T15:11:00.109Z"
+    },
+    {
+      "_id": "64a6e29a6bda5033508ce784",
+      "mark": "Volkswagen",
+      "model": "Polo",
+      "engine": {
+        "power": 110,
+        "volume": 1.6,
+        "transmission": "5MT",
+        "fuel": "Бензин"
+      },
+      "drive": "FF",
+      "equipmentName": "Respect",
+      "price": 1730000,
+      "createdAt": "2023-07-06T15:10:38.670Z"
+    },
+    {
+      "_id": "64a6e29a6bda5033508ce790",
+      "mark": "Volkswagen",
+      "model": "Teramont",
+      "engine": {
+        "power": 220,
+        "volume": 2,
+        "transmission": "8AT",
+        "fuel": "Бензин"
+      },
+      "drive": "4WD",
+      "equipmentName": "R Line",
+      "price": 6710000,
+      "createdAt": "2023-07-06T15:09:05.218Z"
+    },
+    {
+      "_id": "64a6e29a6bda5033508ce796",
+      "mark": "Volkswagen",
+      "model": "Teramont",
+      "engine": {
+        "power": 220,
+        "volume": 2,
+        "transmission": "8AT",
+        "fuel": "Бензин"
+      },
+      "drive": "4WD",
+      "equipmentName": "Respect",
+      "price": 4368000,
+      "createdAt": "2023-07-06T15:08:52.121Z"
+    },
+    {
+      "_id": "64a6e29a6bda5033508ce7ab",
+      "mark": "Volkswagen",
+      "model": "Teramont",
+      "engine": {
+        "power": 220,
+        "volume": 2,
+        "transmission": "8AT",
+        "fuel": "Бензин"
+      },
+      "drive": "4WD",
+      "equipmentName": "Status",
+      "price": 6428000,
+      "createdAt": "2023-07-06T15:08:57.818Z"
     }
   ],
   "total": 2818

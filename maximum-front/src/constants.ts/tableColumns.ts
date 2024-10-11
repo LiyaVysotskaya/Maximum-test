@@ -1,3 +1,5 @@
+import { StockType } from "../types/types";
+
 export const columns = [
   {
     title: "ID",
@@ -5,15 +7,12 @@ export const columns = [
     key: "_id",
   },
   {
-    title: "Марка/модель",
-    dataIndex: "mark",
-    key: "mark",
+    title: "Марка/Модель",
+    key: "markModel",
+    render: (text: string, record: StockType) =>
+      `${record.mark} ${record.model}`,
   },
-  {
-    title: "Модификация",
-    dataIndex: "model",
-    key: "model",
-  },
+  { title: "Модификация", dataIndex: "drive", key: "drive" },
   {
     title: "Комплектация",
     dataIndex: "equipmentName",

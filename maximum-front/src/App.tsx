@@ -3,8 +3,9 @@ import Option from "antd/es/select";
 import Link from "antd/es/typography/Link";
 import { useEffect, useState } from "react";
 import "./App.css";
-// import stockData from "./_mockData/test.json";
-import { getAllStocks, getMarks } from "./api/api";
+import marksData from "./_mockData/marks.json";
+import stockData from "./_mockData/test.json";
+// import { getAllStocks, getMarks } from "./api/api";
 import { columns } from "./constants.ts/tableColumns";
 import { MarksType, StockType } from "./types/types";
 
@@ -22,11 +23,41 @@ const StockTable = () => {
     getMarksData();
   }, []);
 
+  const paginatedData = data.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
+  // const getData = async () => {
+  //   try {
+  //     const stockData = await getAllStocks();
+
+  //     setData(stockData.stocks);
+  //     setTotal(stockData.total);
+  //   } catch (error) {
+  //     console.error("Ошибка при получении стоков:", error);
+  //   }
+  // };
+
+  // const getMarksData = async () => {
+  //   try {
+  //     const marksData = await getMarks();
+
+  //     console.log(marksData);
+  //     setMarks(marksData);
+  //   } catch (error) {
+  //     console.error("Ошибка при получении брендов:", error);
+  //   }
+  // };
+
   const getData = async () => {
     try {
-      const stockData = await getAllStocks();
-
-      setData(stockData.stocks);
+      setData(
+        stockData.stocks.map((stock) => ({
+          ...stock,
+          createdAt: new Date(stock.createdAt),
+        }))
+      );
       setTotal(stockData.total);
     } catch (error) {
       console.error("Ошибка при получении стоков:", error);
@@ -35,42 +66,11 @@ const StockTable = () => {
 
   const getMarksData = async () => {
     try {
-      const marksData = await getMarks();
-
-      console.log(marksData);
       setMarks(marksData);
     } catch (error) {
       console.error("Ошибка при получении брендов:", error);
     }
   };
-
-  // const getData = async () => {
-  //   try {
-  //     // setData(stockData.stocks);
-  //     setData(
-  //       stockData.stocks.map((stock) => ({
-  //         ...stock,
-  //         createdAt: new Date(stock.createdAt),
-  //       }))
-  //     );
-  //     setTotal(stockData.total);
-  //     setMarks(
-  //       data
-  //         .map((stock: StockType) => stock.mark)
-  //         .filter(
-  //           (value: string, index: number, self: string[]) =>
-  //             self.indexOf(value) === index
-  //         )
-  //     );
-  //   } catch (error) {
-  //     console.error("Ошибка при получении стоков:", error);
-  //   }
-  // };
-
-  const paginatedData = data.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize
-  );
 
   const filteredModels = selectedMark
     ? data
