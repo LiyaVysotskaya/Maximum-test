@@ -4,12 +4,12 @@ import Link from "antd/es/typography/Link";
 import { useEffect, useState } from "react";
 import "./App.css";
 // import stockData from "./_mockData/test.json";
-import { getAllStocks } from "./api/api";
+import { getAllStocks, getMarks } from "./api/api";
 import { columns } from "./constants.ts/tableColumns";
-import { StockType } from "./types/types";
+import { MarksType, StockType } from "./types/types";
 
 const StockTable = () => {
-  const [marks, setMarks] = useState<string[]>([]);
+  const [marks, setMarks] = useState<MarksType[]>([]);
   const [selectedMark, setSelectedMark] = useState<string | null>(null);
   const [selectedModels, setSelectedModels] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,22 +17,30 @@ const StockTable = () => {
   const [data, setData] = useState<StockType[]>([]);
   const [total, setTotal] = useState(0);
 
+  useEffect(() => {
+    getData();
+    getMarksData();
+  }, []);
+
   const getData = async () => {
     try {
       const stockData = await getAllStocks();
 
       setData(stockData.stocks);
       setTotal(stockData.total);
-      setMarks(
-        stockData.stocks
-          .map((stock: StockType) => stock.mark)
-          .filter(
-            (value: string, index: number, self: string[]) =>
-              self.indexOf(value) === index
-          )
-      );
     } catch (error) {
       console.error("Ошибка при получении стоков:", error);
+    }
+  };
+
+  const getMarksData = async () => {
+    try {
+      const marksData = await getMarks();
+
+      console.log(marksData);
+      setMarks(marksData);
+    } catch (error) {
+      console.error("Ошибка при получении брендов:", error);
     }
   };
 
@@ -86,24 +94,20 @@ const StockTable = () => {
     setCurrentPage(1);
   };
 
-  useEffect(() => {
-    getData();
-  }, [selectedMark, selectedModels, currentPage, pageSize]);
-
   return (
     <div className="mainSection">
       <h1 className="title">Таблица автомобилей</h1>
       <div className="linksContainer">
         {marks.map((mark) => (
-          <div className="linkWrapper" key={mark}>
+          <div className="linkWrapper" key={mark.name}>
             <Link
-              className={`link ${selectedMark === mark ? "selected" : ""}`}
+              className={`link ${selectedMark === mark.name ? "selected" : ""}`}
               href="#"
-              onClick={() => handleMarkSelect(mark)}
+              onClick={() => handleMarkSelect(mark.name)}
             >
-              {mark}
+              {mark.name}
             </Link>
-            <span className="count">1</span>
+            <span className="count">{mark.count}</span>
           </div>
         ))}
       </div>

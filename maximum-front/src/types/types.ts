@@ -13,3 +13,8 @@ export type StockType = {
   price: number;
   createdAt: Date;
 };
+
+export type MarksType = {
+  name: string;
+  count: number;
+};

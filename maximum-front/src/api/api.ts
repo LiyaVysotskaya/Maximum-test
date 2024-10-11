@@ -17,6 +17,7 @@ export const getAllStocks = async () => {
 export const getMarks = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/stocks/marks`);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Ошибка при получении брендов:", error);
