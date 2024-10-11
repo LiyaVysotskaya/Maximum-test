@@ -1,17 +1,10 @@
 [
   { "name": "Volkswagen NFZ", "count": 1 },
   { "name": "Volkswagen", "count": 1 },
-  { "name": "Mercedes-Benz", "count": 1 },
-  { "name": "BMW", "count": 1 },
+  { "name": "Chery", "count": 1 },
   { "name": "Audi", "count": 1 },
+  { "name": "BMW", "count": 1 },
+  { "name": "Mercedes", "count": 1 },
   { "name": "Toyota", "count": 1 },
-  { "name": "Ford", "count": 1 },
-  { "name": "Renault", "count": 1 },
-  { "name": "Honda", "count": 1 },
-  { "name": "Hyundai", "count": 1 },
-  { "name": "Chevrolet", "count": 1 },
-  { "name": "Nissan", "count": 1 },
-  { "name": "Mitsubishi", "count": 1 },
-  { "name": "Volvo", "count": 1 },
-  { "name": "Infiniti", "count": 1 }
+  { "name": "Honda", "count": 1 }
 ]

@@ -1,4 +1,4 @@
-import { Pagination, Select, Table } from "antd";
+import { Button, Pagination, Select, Table } from "antd";
 import Option from "antd/es/select";
 import Link from "antd/es/typography/Link";
 import { useEffect, useState } from "react";
@@ -91,6 +91,12 @@ const StockTable = () => {
     setCurrentPage(1);
   };
 
+  const resetFilters = () => {
+    setSelectedMark(null);
+    setSelectedModels([]);
+    setCurrentPage(1);
+  };
+
   const filteredModels = selectedMark
     ? data
         .filter((car) => car.mark === selectedMark)
@@ -138,6 +144,9 @@ const StockTable = () => {
             </Option>
           ))}
         </Select>
+        <Button style={{ width: "15%" }} onClick={resetFilters} type="default">
+          Сбросить фильтры
+        </Button>
       </div>
 
       <div className="tableContainer">

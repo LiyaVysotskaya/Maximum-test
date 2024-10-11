@@ -284,6 +284,246 @@
       "equipmentName": "Status",
       "price": 6428000,
       "createdAt": "2023-07-06T15:08:57.818Z"
+    },
+    {
+      "_id": "64a6e29a6bda5033508ced1b",
+      "mark": "Chery",
+      "model": "Tiggo 4 Pro",
+      "engine": {
+        "power": 115,
+        "volume": 1.5,
+        "transmission": "MT",
+        "fuel": "Бензин"
+      },
+      "drive": "2WD [Передний привод]",
+      "equipmentName": "Action",
+      "price": 2099900,
+      "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "1",
+      "mark": "Audi",
+      "model": "A4",
+      "engine": {
+        "power": 190,
+        "volume": 2.0,
+        "transmission": "automatic",
+        "fuel": "petrol"
+      },
+      "drive": "AWD",
+      "equipmentName": "4x4, ABS, ESP, ESP+",
+      "price": 1000000,
+      "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "2",
+      "mark": "BMW",
+      "model": "X5",
+      "engine": {
+        "power": 115,
+        "volume": 1.5,
+        "transmission": "MT",
+        "fuel": "Бензин"
+      },
+      "drive": "2WD [Передний привод]",
+      "equipmentName": "Action",
+      "price": 2099900,
+      "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "3",
+      "mark": "Mercedes",
+      "model": "C-Class",
+      "engine": {
+        "power": 115,
+        "volume": 1.5,
+        "transmission": "MT",
+        "fuel": "Бензин"
+      },
+      "drive": "2WD [Передний привод]",
+      "equipmentName": "Action",
+      "price": 2099900,
+      "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "4",
+      "mark": "Toyota",
+      "model": "Camry",
+      "engine": {
+        "power": 115,
+        "volume": 1.5,
+        "transmission": "MT",
+        "fuel": "Бензин"
+      },
+      "drive": "2WD [Передний привод]",
+      "equipmentName": "Action",
+      "price": 2099900,
+      "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "5",
+      "mark": "Volkswagen",
+      "model": "Tiguan",
+      "engine": {
+        "power": 115,
+        "volume": 1.5,
+        "transmission": "MT",
+        "fuel": "Бензин"
+      },
+      "drive": "2WD [Передний привод]",
+      "equipmentName": "Action",
+      "price": 2099900,
+      "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "6",
+      "mark": "Honda",
+      "model": "CR-V",
+      "engine": {
+        "power": 115,
+        "volume": 1.5,
+        "transmission": "MT",
+        "fuel": "Бензин"
+      },
+      "drive": "2WD [Передний привод]",
+      "equipmentName": "Action",
+      "price": 2099900,
+      "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "7",
+      "mark": "Audi",
+      "model": "Q7",
+      "engine": {
+        "power": 115,
+        "volume": 1.5,
+        "transmission": "MT",
+        "fuel": "Бензин"
+      },
+      "drive": "2WD [Передний привод]",
+      "equipmentName": "Action",
+      "price": 2099900,
+      "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "8",
+      "mark": "Ford",
+      "model": "Mustang",
+      "engine": {
+        "power": 115,
+        "volume": 1.5,
+        "transmission": "MT",
+        "fuel": "Бензин"
+      },
+      "drive": "2WD [Передний привод]",
+      "equipmentName": "Action",
+      "price": 2099900,
+      "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "9",
+      "mark": "Skoda",
+      "model": "Octavia",
+      "engine": {
+        "power": 115,
+        "volume": 1.5,
+        "transmission": "MT",
+        "fuel": "Бензин"
+      },
+      "drive": "2WD [Передний привод]",
+      "equipmentName": "Action",
+      "price": 2099900,
+      "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "10",
+      "mark": "Lexus",
+      "model": "RX 350",
+      "engine": {
+        "power": 115,
+        "volume": 1.5,
+        "transmission": "MT",
+        "fuel": "Бензин"
+      },
+      "drive": "2WD [Передний привод]",
+      "equipmentName": "Action",
+      "price": 2099900,
+      "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "11",
+      "mark": "Renault",
+      "model": "Duster",
+      "engine": {
+        "power": 115,
+        "volume": 1.5,
+        "transmission": "MT",
+        "fuel": "Бензин"
+      },
+      "drive": "2WD [Передний привод]",
+      "equipmentName": "Action",
+      "price": 2099900,
+      "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "12",
+      "mark": "Chery",
+      "model": "Tiggo",
+      "engine": {
+        "power": 115,
+        "volume": 1.5,
+        "transmission": "MT",
+        "fuel": "Бензин"
+      },
+      "drive": "2WD [Передний привод]",
+      "equipmentName": "Action",
+      "price": 2099900,
+      "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "13",
+      "mark": "Fiat",
+      "model": "500",
+      "engine": {
+        "power": 115,
+        "volume": 1.5,
+        "transmission": "MT",
+        "fuel": "Бензин"
+      },
+      "drive": "2WD [Передний привод]",
+      "equipmentName": "Action",
+      "price": 2099900,
+      "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "14",
+      "mark": "Exeed",
+      "model": "TXL",
+      "engine": {
+        "power": 115,
+        "volume": 1.5,
+        "transmission": "MT",
+        "fuel": "Бензин"
+      },
+      "drive": "2WD [Передний привод]",
+      "equipmentName": "Action",
+      "price": 2099900,
+      "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "15",
+      "mark": "BMW",
+      "model": "3 Series",
+      "engine": {
+        "power": 115,
+        "volume": 1.5,
+        "transmission": "MT",
+        "fuel": "Бензин"
+      },
+      "drive": "2WD [Передний привод]",
+      "equipmentName": "Action",
+      "price": 2099900,
+      "createdAt": "2023-05-31T06:11:35.608Z"
     }
   ],
   "total": 2818
