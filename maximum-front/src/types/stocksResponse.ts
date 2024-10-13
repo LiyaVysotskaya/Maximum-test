@@ -1,6 +1,6 @@
 import { StockType } from "./types";
 
-export type GetAllStocksResponse = {
+export type StocksResponse = {
   stocks: StockType[];
   total: number;
 };

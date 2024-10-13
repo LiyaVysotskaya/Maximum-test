@@ -524,6 +524,21 @@
       "equipmentName": "Action",
       "price": 2099900,
       "createdAt": "2023-05-31T06:11:35.608Z"
+    },
+    {
+      "_id": "16",
+      "mark": "Volkswagen NFZ",
+      "model": null,
+      "engine": {
+        "power": 150,
+        "volume": 2,
+        "transmission": "7AMT",
+        "fuel": "Дизель"
+      },
+      "drive": "4WD",
+      "equipmentName": "Comfortline кор. база",
+      "price": 4361800,
+      "createdAt": "2023-07-06T15:12:23.893Z"
     }
   ],
   "total": 2818
