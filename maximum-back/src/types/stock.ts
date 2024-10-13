@@ -3,6 +3,7 @@ import { WithId } from "mongodb";
 export interface Stock extends WithId<Document> {
   name: string;
   equipmentName: string;
+  drive: string;
   price: number;
   createdAt: Date;
 }

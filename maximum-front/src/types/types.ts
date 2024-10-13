@@ -1,13 +1,13 @@
-export type StockType = {
+export type Stock = {
   _id: string;
-  mark: string;
-  model: string;
+  name: string;
   equipmentName: string;
+  drive: string;
   price: number;
   createdAt: Date;
 };
 
-export type MarksType = {
+export type Mark = {
   name: string;
   count: number;
   models: string[];

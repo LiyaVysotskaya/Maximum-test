@@ -31,6 +31,7 @@ export const getStockList = async (
         _id: x._id,
         name: `${x.mark} ${x.model || ""}`,
         equipmentName: x.equipmentName,
+        drive: x.drive,
         price: x.price,
         createdAt: x.createdAt,
       } as Stock)

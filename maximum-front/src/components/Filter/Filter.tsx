@@ -4,7 +4,7 @@ import Link from "antd/es/typography/Link";
 import { FC, useEffect, useState } from "react";
 import { getMarks } from "../../api/api";
 import { EMPTY_MODEL } from "../../constants/constants";
-import { MarksType } from "../../types/types";
+import { Mark } from "../../types/types";
 
 interface IProps {
   selectedMark: string | undefined;
@@ -13,7 +13,7 @@ interface IProps {
 }
 
 export const Filter: FC<IProps> = (props) => {
-  const [marks, setMarks] = useState<MarksType[]>([]);
+  const [marks, setMarks] = useState<Mark[]>([]);
   const [filteredModels, setFilteredModels] = useState<string[]>([]);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export const Filter: FC<IProps> = (props) => {
     props.onChange(props.selectedMark, models);
   };
 
-  const handleMarkSelect = (mark: MarksType) => {
+  const handleMarkSelect = (mark: Mark) => {
     setFilteredModels(mark.models);
 
     props.onChange(mark.name);

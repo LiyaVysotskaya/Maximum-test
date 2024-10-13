@@ -3,7 +3,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import { getStocks } from "../../api/api";
 import { DEFAULT_PAGE_SIZE } from "../../constants/constants";
 import { columns } from "../../constants/tableColumns";
-import { StockType } from "../../types/types";
+import { Stock } from "../../types/types";
 
 interface IProps {
   selectedMark: string | undefined;
@@ -11,7 +11,7 @@ interface IProps {
 }
 
 export const StockTable: FC<IProps> = (props) => {
-  const [data, setData] = useState<StockType[]>([]);
+  const [data, setData] = useState<Stock[]>([]);
   const [total, setTotal] = useState(0);
   const [stockLoaded, setStockLoaded] = useState(false);
   const selectedPage = useRef(1);
@@ -31,8 +31,8 @@ export const StockTable: FC<IProps> = (props) => {
         props.selectedMark,
         props.selectedModels
       );
-      setData(stockData.stocks);
-      setTotal(stockData.total);
+      setData(stockData.data);
+      setTotal(stockData.count);
     } catch (error) {
       console.error("Ошибка при получении стоков:", error);
     } finally {

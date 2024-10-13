@@ -1,6 +1,3 @@
-import { StockType } from "../types/types";
-import { EMPTY_MODEL } from "./constants";
-
 export const columns = [
   {
     title: "ID",
@@ -9,9 +6,8 @@ export const columns = [
   },
   {
     title: "Марка/Модель",
-    key: "markModel",
-    render: (text: string, record: StockType) =>
-      `${record.mark} ${record.model || EMPTY_MODEL}`,
+    dataIndex: "name",
+    key: "name",
   },
   { title: "Модификация", dataIndex: "drive", key: "drive" },
   {
