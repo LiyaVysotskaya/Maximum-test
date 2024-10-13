@@ -1,17 +1,19 @@
-import { ObjectId } from "mongodb";
+import { WithId } from "mongodb";
 
-export type StockType = {
-  _id: ObjectId;
-  mark: string;
-  model: string;
-  engine: {
-    power: number;
-    volume: number;
-    transmission: string;
-    fuel: string;
-  };
-  drive: string;
+export interface Stock extends WithId<Document> {
+  name: string;
   equipmentName: string;
   price: number;
   createdAt: Date;
+}
+
+export type BaseList<T> = {
+  data: T[];
+  count: number;
+};
+
+export type Mark = {
+  name: string;
+  count: number;
+  models: string[];
 };
