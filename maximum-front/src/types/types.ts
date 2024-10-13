@@ -1,16 +1,10 @@
-import { WithId } from "mongodb";
-
-export interface Stock extends WithId<Document> {
+export type Stock = {
+  _id: string;
   name: string;
   equipmentName: string;
   drive: string;
   price: number;
   createdAt: Date;
-}
-
-export type BaseList<T> = {
-  data: T[];
-  count: number;
 };
 
 export type Mark = {
